@@ -47,7 +47,7 @@ namespace Unity.Entities
         {
             ComponentType[] types;
             Component[] components;
-            GetComponents(gameObject, true, out types, out components);
+            GetComponents(gameObject, false, out types, out components);
 
             EntityArchetype archetype;
             try
@@ -68,7 +68,7 @@ namespace Unity.Entities
                 throw e;
             }
 
-            var entity = CreateEntity(entityManager, archetype, components, types);
+            var entity = CreateEntity(entityManager, archetype, false, components, types);
 
             return entity;
         }
@@ -126,7 +126,7 @@ namespace Unity.Entities
             }
         }
 
-        static Entity CreateEntity(EntityManager entityManager, EntityArchetype archetype, IReadOnlyList<Component> components, IReadOnlyList<ComponentType> types)
+        static Entity CreateEntity(EntityManager entityManager, EntityArchetype archetype, bool includeGameObjectComponents, IReadOnlyList<Component> components, IReadOnlyList<ComponentType> types)
         {
             var entity = entityManager.CreateEntity(archetype);
             var t = 0;
@@ -140,7 +140,7 @@ namespace Unity.Entities
                     componentDataProxy.UpdateComponentData(entityManager, entity);
                     t++;
                 }
-                else if (!(com is GameObjectEntity) && com != null)
+                else if (includeGameObjectComponents && !(com is GameObjectEntity) && com != null)
                 {
                     entityManager.SetComponentObject(entity, types[t], com);
                     t++;

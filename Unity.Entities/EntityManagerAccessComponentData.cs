@@ -410,7 +410,7 @@ namespace Unity.Entities
             ManagedComponentStore.RemoveReference(newSharedComponentDataIndex);
         }
 
-        internal void SetComponentObject(Entity entity, ComponentType componentType, object componentObject)
+        public void SetComponentObject(Entity entity, ComponentType componentType, object componentObject)
         {
             EntityComponentStore->AssertEntityHasComponent(entity, componentType.TypeIndex);
 
