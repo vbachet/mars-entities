@@ -342,7 +342,7 @@ namespace Unity.Entities
             m_EntityDataAccess.SetSharedComponentDataBoxedDefaultMustBeNull(entity, typeIndex, hashCode, componentData);
         }
 
-        internal void SetComponentObject(Entity entity, ComponentType componentType, object componentObject)
+        public void SetComponentObject(Entity entity, ComponentType componentType, object componentObject)
         {
             m_EntityDataAccess.SetComponentObject(entity, componentType, componentObject);
         }
