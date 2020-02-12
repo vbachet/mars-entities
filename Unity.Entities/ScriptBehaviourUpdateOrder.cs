@@ -139,7 +139,7 @@ namespace Unity.Entities
         internal class DummyDelegateWrapper
         {
 
-            internal ComponentSystemBase System => m_System;
+            public ComponentSystemBase System => m_System;
             private readonly ComponentSystemBase m_System;
 
             public DummyDelegateWrapper(ComponentSystemBase sys)
